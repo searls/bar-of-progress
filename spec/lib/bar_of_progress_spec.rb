@@ -12,4 +12,20 @@ describe BarOfProgress do
     Then { subject.progress(100) == "[●●●●●●●●●●]" }
     Then { subject.progress(101) == "[●●●●●●●●●●]" }
   end
+
+  context "awesome bejazzled custom progress bar" do
+    subject { BarOfProgress.new(
+      :total => 115.5,
+      :length => 14,
+      :braces => %w{( )},
+      :complete_indicator => "■",
+      :partial_indicator => "▤",
+      :incomplete_indicator => "□"
+    ) }
+
+    Then { subject.progress == "(□□□□□□□□□□□□□□)" }
+    Then { subject.progress(30) == "(■■■▤□□□□□□□□□□)" }
+    Then { subject.progress(33) == "(■■■■□□□□□□□□□□)" }
+    Then { subject.progress(100) == "(■■■■■■■■■■■■■■)" }
+  end
 end
