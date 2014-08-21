@@ -9,6 +9,8 @@ Everyone knows that progress bars are one of the hard, unsolved problems of comp
 ### Default progress bars
 
 ``` ruby
+require 'bar-of-progress'
+
 bar = BarOfProgress.new #=> defaults to completeness == "100"  
 
 bar.progress #=> "[◌◌◌◌◌◌◌◌◌◌]"
@@ -21,6 +23,8 @@ bar.progress(49) #=> "[●●●●◍◌◌◌◌◌]"
 ### Custom progress bars
 
 ``` ruby
+require 'bar-of-progress'
+
 bar = BarOfProgress.new(
   :total => 115.5,              #=> default (will be converted to BigDecimal): 100
   :length => 14,                #=> default (will be converted to Fixnum): 10
