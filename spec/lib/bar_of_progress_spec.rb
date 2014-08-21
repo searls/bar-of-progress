@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'bar-of-progress'
 
 describe BarOfProgress do
