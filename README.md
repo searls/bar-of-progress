@@ -22,8 +22,8 @@ bar.progress(49) #=> "[●●●●◍◌◌◌◌◌]"
 
 ``` ruby
 bar = BarOfProgress.new(
-  :total => 115.5,             #=> default: 100.0
-  :length => 14,               #=> default: 10
+  :total => 115.5,             #=> default (will be converted to BigDecimal): 100
+  :length => 14,               #=> default (will be converted to Fixnum): 10
   :braces => %w{( )},          #=> default: ["[", "]"]
   :complete_indicator => "■",  #=> default: "●"
   :partial_indicator => "▤",   #=> default: "◍"
