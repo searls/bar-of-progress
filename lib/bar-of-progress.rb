@@ -25,21 +25,65 @@ class BarOfProgress
   end
 
   def progress(amount = 0)
-    bubbles = clamp(((amount.to_d / @options[:total]) * @options[:length]), 0, @options[:length]).to_d
-    full_bubbles = bubbles.floor
-    partial_bubbles = bubbles.truncate(@options[:precision]) % 1 == 0 ? 0 : 1
-    "#{@options[:braces][0]}#{chars(@options[:complete_indicator], full_bubbles)}#{chars(@options[:partial_indicator], partial_bubbles)}#{chars(@options[:incomplete_indicator], (@options[:length] - full_bubbles - partial_bubbles))}#{@options[:braces][1]}"
+    bubbles = clamped_bubbles_for(amount)
+    Output.new(bubbles.floor, partial_bubbles_for(bubbles), @options).to_s
   end
 
 private
+
+  def clamped_bubbles_for(amount)
+    clamp(bubbles_for(amount), 0, @options[:length]).to_d
+  end
+
+  def partial_bubbles_for(bubbles)
+    bubbles.truncate(@options[:precision]) % 1 == 0 ? 0 : 1
+  end
+
+  def bubbles_for(amount)
+    (amount.to_d / @options[:total]) * @options[:length]
+  end
 
   # This method is amazing.
   def clamp(n, min, max)
     [[n, min].max, max].min
   end
 
-  def chars(char, n)
-    return "" if n <= 0
-    char * n
+  class Output
+    def initialize(complete, partial, options)
+      @complete = complete
+      @partial = partial
+      @options = options
+    end
+
+    def to_s
+      "#{p}#{complete}#{partial}#{incomplete}#{d}"
+    end
+
+  private
+
+    def p
+      @options[:braces][0]
+    end
+
+    def complete
+      chars(@options[:complete_indicator], @complete)
+    end
+
+    def partial
+      @options[:partial_indicator] if @partial > 0
+    end
+
+    def incomplete
+      chars(@options[:incomplete_indicator], (@options[:length] - @complete - @partial))
+    end
+
+    def d
+      @options[:braces][1]
+    end
+
+    def chars(char, n)
+      return "" if n <= 0
+      char * n
+    end
   end
 end
