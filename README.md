@@ -1,29 +1,19 @@
-# BarOfProgress
+# bar-of-progress
 
-TODO: Write a gem description
+Everyone knows that progress bars are one of the hard, unsolved problems of computer science, so I decided to give it a shot.
 
-## Installation
+![xkcd rocks](http://imgs.xkcd.com/comics/estimation.png)
 
-Add this line to your application's Gemfile:
+## API
 
-    gem 'bar_of_progress'
+Boring, normal progress bars:
 
-And then execute:
+``` ruby
+bar = BarOfProgress.new #=> defaults to completeness == "100"  
 
-    $ bundle
+bar.progress #=> "[◌◌◌◌◌◌◌◌◌◌]"
 
-Or install it yourself as:
+bar.progress(50) #=> "[●●●●●◌◌◌◌◌]"
 
-    $ gem install bar_of_progress
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/bar_of_progress/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+bar.progress(49) #=> "[●●●●○◌◌◌◌◌]"
+```
