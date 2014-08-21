@@ -14,5 +14,10 @@ describe BarOfProgress do
       When(:result) { subject.progress(100) }
       Then { result == "[●●●●●●●●●●]" }
     end
+
+    describe "50% progress" do
+      When(:result) { subject.progress(50) }
+      Then { result == "[●●●●●◌◌◌◌◌]" }
+    end
   end
 end
