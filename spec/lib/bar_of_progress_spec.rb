@@ -4,10 +4,15 @@ describe BarOfProgress do
   context "vanilla default progress bar" do
     subject { BarOfProgress.new }
 
-    When(:result) { subject.progress }
 
     describe "initial progress" do
+      When(:result) { subject.progress }
       Then { result == "[◌◌◌◌◌◌◌◌◌◌]" }
+    end
+
+    describe "100% progress" do
+      When(:result) { subject.progress(100) }
+      Then { result == "[●●●●●●●●●●]" }
     end
   end
 end
