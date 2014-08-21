@@ -6,7 +6,9 @@ class BarOfProgress
   end
 
   def progress(amount = 0)
-    bubbles = ((amount / @complete) * 10).round
-    "[#{'●' * bubbles}#{'◌' * (10 - bubbles)}]"
+    bubbles = ((amount / @complete) * 10)
+    full_bubbles = bubbles.floor
+    partial_bubbles = bubbles % 1 == 0 ? 0 : 1
+    "[#{'●' * full_bubbles}#{'◍' * partial_bubbles}#{'◌' * (10 - full_bubbles - partial_bubbles)}]"
   end
 end
