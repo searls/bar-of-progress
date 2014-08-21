@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require "bar_of_progress/version"
 
 require 'bigdecimal'
