@@ -1,6 +1,7 @@
 # bar-of-progress
 
-[![Build Status](https://travis-ci.org/searls/bar-of-progress.svg?branch=master)](https://travis-ci.org/searls/bar-of-progress)
+[![Build Status](https://travis-ci.org/searls/bar-of-progress.svg?branch=master)](https://travis-ci.org/searls/bar-of-progress) [![Code Climate](https://codeclimate.com/github/searls/bar-of-progress/badges/gpa.svg)](https://codeclimate.com/github/searls/bar-of-progress)
+
 
 Everyone knows that progress bars are one of the hard, unsolved problems of computer science, so I decided to give it a shot.
 
