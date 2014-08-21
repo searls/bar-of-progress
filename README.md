@@ -22,7 +22,7 @@ bar.progress(49) #=> "[●●●●◍◌◌◌◌◌]"
 
 ``` ruby
 bar = BarOfProgress.new(
-  :total => 338.2,             #=> default: 100.0
+  :total => 115.5,             #=> default: 100.0
   :length => 14,               #=> default: 10
   :braces => %w{( )},          #=> default: ["[", "]"]
   :complete_indicator => "■",  #=> default: "●"
@@ -30,6 +30,6 @@ bar = BarOfProgress.new(
   :incomplete_indicator => "□" #=> default: "◌"
 )
 
-bar.progress(66) #=> "(■■▤□□□□□□□□□□□)"
+bar.progress(30) #=> "(■■■▤□□□□□□□□□□)"
 
 ```
