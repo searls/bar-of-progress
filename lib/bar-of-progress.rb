@@ -23,7 +23,7 @@ class BarOfProgress
   end
 
   def progress(amount = 0)
-    bubbles = betwixt(((amount.to_d / @options[:total]) * @options[:length]), 0, @options[:length]).to_d
+    bubbles = clamp(((amount.to_d / @options[:total]) * @options[:length]), 0, @options[:length]).to_d
     full_bubbles = bubbles.floor
     partial_bubbles = bubbles.truncate(@options[:precision]) % 1 == 0 ? 0 : 1
     "#{@options[:braces][0]}#{chars(@options[:complete_indicator], full_bubbles)}#{chars(@options[:partial_indicator], partial_bubbles)}#{chars(@options[:incomplete_indicator], (@options[:length] - full_bubbles - partial_bubbles))}#{@options[:braces][1]}"
@@ -32,7 +32,7 @@ class BarOfProgress
 private
 
   # This method is amazing.
-  def betwixt(n, min, max)
+  def clamp(n, min, max)
     [[n, min].max, max].min
   end
 
