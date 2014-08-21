@@ -56,12 +56,12 @@ private
     end
 
     def to_s
-      "#{p}#{complete}#{partial}#{incomplete}#{d}"
+      "#{left_bracket}#{complete}#{partial}#{incomplete}#{right_bracket}"
     end
 
   private
 
-    def p
+    def left_bracket
       @options[:braces][0]
     end
 
@@ -77,7 +77,7 @@ private
       chars(@options[:incomplete_indicator], (@options[:length] - @complete - @partial))
     end
 
-    def d
+    def right_bracket
       @options[:braces][1]
     end
 
