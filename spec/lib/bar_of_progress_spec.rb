@@ -26,6 +26,6 @@ describe BarOfProgress do
     Then { subject.progress == "(□□□□□□□□□□□□□□)" }
     Then { subject.progress(30) == "(■■■▤□□□□□□□□□□)" }
     Then { subject.progress(33) == "(■■■■□□□□□□□□□□)" }
-    Then { subject.progress(100) == "(■■■■■■■■■■■■■■)" }
+    Then { subject.progress(115.5) == "(■■■■■■■■■■■■■■)" }
   end
 end

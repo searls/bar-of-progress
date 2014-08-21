@@ -10,7 +10,8 @@ class BarOfProgress
     :braces => %w{[ ]},
     :complete_indicator => "●",
     :partial_indicator => "◍",
-    :incomplete_indicator => "◌"
+    :incomplete_indicator => "◌",
+    :precision => 20
   }
 
   def initialize(options = {})
@@ -22,9 +23,9 @@ class BarOfProgress
   end
 
   def progress(amount = 0)
-    bubbles = betwixt(((amount.to_d / @options[:total]) * @options[:length]), 0, @options[:length])
+    bubbles = betwixt(((amount.to_d / @options[:total]) * @options[:length]), 0, @options[:length]).to_d
     full_bubbles = bubbles.floor
-    partial_bubbles = bubbles % 1 == 0 ? 0 : 1
+    partial_bubbles = bubbles.truncate(@options[:precision]) % 1 == 0 ? 0 : 1
     "#{@options[:braces][0]}#{chars(@options[:complete_indicator], full_bubbles)}#{chars(@options[:partial_indicator], partial_bubbles)}#{chars(@options[:incomplete_indicator], (@options[:length] - full_bubbles - partial_bubbles))}#{@options[:braces][1]}"
   end
 
