@@ -3,7 +3,6 @@
 require "bar_of_progress/version"
 
 require 'bigdecimal'
-require 'bigdecimal/util'
 
 class BarOfProgress
   DEFAULTS = {
@@ -20,7 +19,7 @@ class BarOfProgress
     @options = DEFAULTS.merge(options)
 
     #massage data because eww.
-    @options[:total] = @options[:total].to_d
+    @options[:total] = to_d(@options[:total])
     @options[:length] = @options[:length].to_i
   end
 
@@ -32,7 +31,7 @@ class BarOfProgress
 private
 
   def clamped_bubbles_for(amount)
-    clamp(bubbles_for(amount), 0, @options[:length]).to_d
+    to_d(clamp(bubbles_for(amount), 0, @options[:length]))
   end
 
   def partial_bubbles_for(bubbles)
@@ -40,12 +39,20 @@ private
   end
 
   def bubbles_for(amount)
-    (amount.to_d / @options[:total]) * @options[:length]
+    (to_d(amount) / @options[:total]) * @options[:length]
   end
 
   # This method is amazing.
   def clamp(n, min, max)
     [[n, min].max, max].min
+  end
+
+  def to_d(thing)
+    if thing.kind_of?(Float)
+      BigDecimal(thing, Float::DIG)
+    else
+      BigDecimal(thing)
+    end
   end
 
   class Output
