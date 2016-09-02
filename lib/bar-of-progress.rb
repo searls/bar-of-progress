@@ -48,11 +48,7 @@ private
   end
 
   def to_d(thing)
-    if thing.kind_of?(Float)
-      BigDecimal(thing, Float::DIG)
-    else
-      BigDecimal(thing)
-    end
+    BigDecimal(thing.to_s)
   end
 
   class Output
